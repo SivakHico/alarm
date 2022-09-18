@@ -4,16 +4,39 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Set Alarm</title>
   </head>
   <body>
     <h3>Time now in Germany</h3>
-    <div id="time"></div>
-    <button id="alarm">Add Alarm</button>
-    <select name="hours" id="hours"></select>
-    <select name="min" id="min"></select>
-    <select name="sec" id="sec"></select>
-
+    <div id="current-time"></div>
+    <div id="before-alarm">
+      <input id="alarm" type="button" value="Set Alarm" />
+      <label for="hours">hours</label>
+      <input
+        name="hours"
+        id="hrs"
+        type="number"
+        min="0"
+        max="23"
+        placeholder="00"
+      />
+      <label for="min">minutes</label>
+      <input
+        name="min"
+        id="min"
+        type="number"
+        min="0"
+        max="59"
+        placeholder="00"
+      />
+    </div>
+    <div id="after-alarm">
+      <span>Alarm Added</span>
+      <span id="added"></span>
+    </div>
+    <div id="stop">
+      <input id="stop-alarm" type="button" value="Stop Alarm" />
+    </div>
     <script src="main.js"></script>
   </body>
 </html>

@@ -1,38 +1,53 @@
-const time = document.querySelector("#time");
-const hoursHtml = document.querySelector("#hours");
+const currentTimeHtml = document.querySelector("#current-time");
+const stopAlarm = document.querySelector("#stop-alarm");
+const hrsHtml = document.querySelector("#hrs");
 const minHtml = document.querySelector("#min");
-const secHtml = document.querySelector("#sec");
+const addedHtml = document.querySelector("#added");
+const alarmSound = new Audio("High-Sound.mp3");
 
-const hours = [1, 2, 3, 4, 5];
-const minutes = [1, 2, 3, 4, 5];
-const second = [1, 2, 3, 4, 5];
+let currentTime = null;
+let alarmTime = null;
 
-const displayHours = (item) => {
-  return `<option value='${item}'>
-  ${item}
-  </option>`;
-};
+alarm.addEventListener("click", setAlarm);
+stopAlarm.addEventListener("click", alarmStop);
 
-const displayMin = (item) => {
-  return `<option>
-    ${item}
-    </option>`;
-};
-
-const displaySec = (item) => {
-  return `<option>
-    ${item}
-    </option>`;
-};
-
-hoursHtml.innerHTML = hours.map(displayHours).join("");
-minHtml.innerHTML = minutes.map(displayMin).join("");
-secHtml.innerHTML = second.map(displaySec).join("");
-
-console.log(hoursHtml);
-
-function timer() {
-  time.innerHTML = new Date().toLocaleTimeString("de-DE");
+function setAlarm() {
+  let addedHrs = hrsHtml.value;
+  let addedMin = minHtml.value;
+  if (addedHrs / 10 < 1) {
+    addedHrs = "0" + addedHrs;
+  }
+  if (addedMin / 10 < 1) {
+    addedMin = "0" + addedMin;
+  }
+  alarmTime = `${addedHrs}:${addedMin}:00`;
+  addedHtml.innerHTML = alarmTime;
 }
 
-setInterval(timer);
+function displayCurrentTime() {
+  setInterval(() => {
+    currentTime = new Date().toLocaleTimeString("de-DE");
+    currentTimeHtml.innerHTML = currentTime;
+    alarmChecker();
+  }, 1000);
+}
+
+function alarmChecker() {
+  if (alarmTime == currentTime) {
+    alarmSound.play();
+  }
+}
+
+function alarmStop() {
+  alarmSound.pause();
+  alarmReset();
+}
+
+function alarmReset() {
+  addedHtml.innerHTML = "";
+  hrsHtml.innerHTML = "";
+  minHtml.innerHTML = "";
+  console.log(555);
+}
+
+displayCurrentTime();
