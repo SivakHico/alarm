@@ -1,5 +1,6 @@
 const currentTimeHtml = document.querySelector("#current-time");
 const stopAlarm = document.querySelector("#stop-alarm");
+const reminderTimeHtml = document.querySelector("#message");
 const hrsHtml = document.querySelector("#hrs");
 const minHtml = document.querySelector("#min");
 const addedHtml = document.querySelector("#added");
@@ -22,6 +23,8 @@ function setAlarm() {
   }
   alarmTime = `${addedHrs}:${addedMin}:00`;
   addedHtml.innerHTML = alarmTime;
+  addedHtml.style = "text-decoration: none;";
+  reminderTime();
 }
 
 function displayCurrentTime() {
@@ -44,10 +47,17 @@ function alarmStop() {
 }
 
 function alarmReset() {
-  addedHtml.innerHTML = "";
+  addedHtml.innerHTML = "00:00:00";
+  addedHtml.style = "text-decoration: line-through;";
   hrsHtml.innerHTML = "";
   minHtml.innerHTML = "";
-  console.log(555);
 }
+
+function reminderTime() {
+  let zzz = currentTime - alarmTime;
+  console.log(zzz);
+}
+
+
 
 displayCurrentTime();
