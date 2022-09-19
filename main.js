@@ -54,10 +54,14 @@ function alarmReset() {
 }
 
 function reminderTime() {
-  let zzz = currentTime - alarmTime;
-  console.log(zzz);
+  let hoursMinutes = currentTime.split(/[.:]/);
+  let hours = parseInt(hoursMinutes[0], 10);
+  let minutes = hoursMinutes[1] ? parseInt(hoursMinutes[1], 10) : 0;
+  let finalTime = hours + minutes / 60;
+  hrsHtml;
+  minHtml;
+  let zzz = hours - hrsHtml.value + ":" + (minutes - minHtml.value);
+  console.log(zzz, hoursMinutes, hours, minutes, finalTime);
 }
-
-
 
 displayCurrentTime();
